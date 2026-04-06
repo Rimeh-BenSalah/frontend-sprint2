@@ -1,0 +1,47 @@
+<!--<p>update-livre works!</p>-->
+<div class="container">
+    <div>
+      <h2>Modifier un Livre :</h2>             
+    </div>
+         <form >
+            <!--<div class="col-sm-2 col-md-2 col-lg-2"> 
+                <label >ID Livre</label> 
+                <input type="text" [(ngModel)]="currentLiver.idLivre" name="idLivre" class="form-control"> 
+            </div>-->
+            <!--<div hidden class="col-sm-2 col-md-2 col-lg-2"> 
+                <label >ID Livre</label> 
+                <input type="text" [(ngModel)]="currentLivre.idLivre" name="idLivre" class="form-control"> 
+            </div>  -->       
+            <div  class="col-sm-2 col-md-2 col-lg-2">
+               <label >ID  Livre</label>
+               <input  readonly  type="text"  [(ngModel)]="currentLivre.idLivre"  
+                   name="idLivre" class="form-control">
+            </div>
+             <div class="col-sm-4 col-md-4 col-lg-4" >
+               <label >Nom Livre</label>
+               <input  type="text"[(ngModel)]= "currentLivre.nomLivre"  
+                   name="nomLivre" class="form-control">
+             </div>
+             <div class="col-sm-4 col-md-4 col-lg-4" >
+               <label >Auteur</label>
+               <input  type="text"[(ngModel)]= "currentLivre.auteur"  
+                   name="auteur" class="form-control">
+             </div>
+             <div class="col-sm-2 col-md-2 col-lg-2">
+               <label >Prix livre</label>
+           <input type="number"   [(ngModel)]= "currentLivre.prixLivre"  
+                   name="prixLivre" class="form-control">
+             </div>
+
+             <div class="col-sm-4 col-md-4 col-lg-4">
+                 <label >Date de publication</label>
+                <input  type="date"  [ngModel]="currentLivre.Datedepublication | date: 'yyyy-MM-dd'" 
+                (ngModelChange)=" currentLivre.Datedepublication= $event"   name="Datedepublication" 
+                class="form-control">
+             </div>
+             
+              <div class="mt-2">
+                    <button type="submit"  (click)="updateLivre()" class="btn btn-success">Modifer</button>
+              </div>  
+         </form>
+</div> 
