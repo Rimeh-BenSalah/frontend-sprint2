@@ -1,0 +1,76 @@
+<div class="container">
+
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Thèmes</label>
+
+    <select
+      class="form-control form-control-lg"
+      [(ngModel)]="IdTheme"
+      (change)="onChange()"
+    >
+
+      @for (t of themes; track t.idThe) {
+        <option [value]="t.idThe">
+          {{ t.nomThe }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+
+
+
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+      <table class="table table-striped">
+
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Date publication</th>
+          <th>Thème</th>
+        </tr>
+
+        @for (livre of livres; track livre.idLivre) {
+
+        <tbody>
+          <tr>
+            <td>{{ livre.idLivre }}</td>
+            <td>{{ livre.nomLivre }}</td>
+            <td>{{ livre.prixLivre }}</td>
+            <td>{{ livre.datedepublication | date:'dd/MM/yyyy' }}</td>
+
+            @if(livre.theme){
+              <td>{{ livre.theme.nomThe }}</td>
+            } @else {
+              <td>PAS DE THEME</td>
+            }
+
+            <!-- actions si besoin -->
+            <!--
+            <td>
+              <a class="btn btn-danger" (click)="supprimerLivre(livre)">
+                Supprimer
+              </a>
+            </td>
+
+            <td>
+              <a class="btn btn-success" [routerLink]="['/updateLivre', livre.idLivre]">
+                Modifier
+              </a>
+            </td>
+            -->
+          </tr>
+        </tbody>
+
+        }
+
+      </table>
+
+    </div>
+  </div>
+</div>

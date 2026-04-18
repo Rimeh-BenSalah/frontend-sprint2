@@ -1,7 +1,10 @@
+import { Theme } from "./theme.model";
+
 export class Livre { 
-idLivre? : number; 
+idLivre? : number | undefined; 
 nomLivre? : string; 
 auteur?: string;
 prixLivre? : number; 
-Datedepublication? : Date ; 
+datedepublication?: Date;
+theme! : Theme;
 } 

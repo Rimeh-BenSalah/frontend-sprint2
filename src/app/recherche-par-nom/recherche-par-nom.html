@@ -1,0 +1,88 @@
+<div class="container">
+
+  <!-- FORM RECHERCHE -->
+  <!--<form class="form-inline" (ngSubmit)="rechercherLivs()">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+
+      <label>Nom Livre</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="nomLivre"
+        name="nomLivre"
+      />
+
+      <button type="submit" class="btn btn-primary mb-2 ml-2">
+        Rechercher
+      </button>
+
+    </div>
+  </form>-->
+  <!--<form class="form-inline"> 
+    <div class="form-group mx-sm-3 mb-2 mt-2 "> 
+        <label>Nom Livre en tapant</label> 
+        <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)"> 
+    </div> 
+</form>-->
+<form class="form-inline"> 
+    <div class="form-group mx-sm-3 mb-2 mt-2 "> 
+        <label>Nom Livre en tapant</label> 
+        <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+     </div> 
+</form>
+
+  <!-- TABLE -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+      <table class="table table-striped">
+
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Auteur</th>
+            <th>Prix</th>
+            <th>Date publication</th>
+            <th>Thème</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (livre of livres | searchFilter: searchTerm; track livre.idLivre) {
+
+            <tr>
+              <td>{{ livre.idLivre }}</td>
+              <td>{{ livre.nomLivre }}</td>
+              <td>{{ livre.auteur }}</td>
+              <td>{{ livre.prixLivre }}</td>
+              <td>{{ livre.datedepublication | date:'dd/MM/yyyy' }}</td>
+
+              @if (livre.theme) {
+                <td>{{ livre.theme.nomThe }}</td>
+              } @else {
+                <td>Pas de thème</td>
+              }
+
+            </tr>
+
+          } @empty {
+
+            <tr>
+              <td colspan="6" class="text-center">
+                Aucun livre trouvé
+              </td>
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+
+</div>

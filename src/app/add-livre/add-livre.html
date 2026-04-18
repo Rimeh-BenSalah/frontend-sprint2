@@ -1,34 +1,49 @@
 <!--<p>add-livre works!</p>-->
 <div class="container">
-    <div>
-        <h2>Ajouter un Livre :</h2>
+  <div>
+    <h2>Ajouter un Livre :</h2>
+  </div>
+  <form>
+    <div hidden class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Livre</label>
+      <input type="text" [(ngModel)]="newLivre.idLivre" name="idLivre" class="form-control" />
     </div>
-    <form>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>ID Livre</label>
-            <input type="text" [(ngModel)]="newLivre.idLivre" name="idLivre" class="form-control">
-        </div>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Nom Livre</label>
-            <input type="text" [(ngModel)]="newLivre.nomLivre" name="nomLivre" class="form-control">
-        </div>
-         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Auteur</label>
-            <input type="text" [(ngModel)]="newLivre.auteur" name="auteur" class="form-control">
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Prix Livre</label>
-            <input type="number" [(ngModel)]="newLivre.prixLivre" name="prixLivre" class="form-control">
-        </div>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Date de publication</label>
-            <input type="date" [(ngModel)]="newLivre.Datedepublication" name="Datedepublication" class="form-control">
-        </div>
-        <div class="mt-2">
-            <button type="submit" (click)="addLivre()" class="btn btn-success">Ajouter</button>
-        </div>
-        <div class="mt-2">
-            <h3>{{message}}</h3>
-        </div> 
-    </form>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Livre</label>
+      <input type="text" [(ngModel)]="newLivre.nomLivre" name="nomLivre" class="form-control" />
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Auteur</label>
+      <input type="text" [(ngModel)]="newLivre.auteur" name="auteur" class="form-control" />
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix Livre</label>
+      <input type="number" [(ngModel)]="newLivre.prixLivre" name="prixLivre" class="form-control" />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date de publication</label>
+      <input
+        type="date"
+        [(ngModel)]="newLivre.datedepublication"
+        name="Datedepublication"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Theme</label>
+      <select class="form-control form-control-lg" id="idThe" name="idThe" [(ngModel)]="newIdThe">
+        @for (the of themes; track the.idThe) {
+          <option [value]="the.idThe">
+            {{ the.nomThe }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="addLivre()" class="btn btn-success">Ajouter</button>
+    </div>
+    <div class="mt-2">
+      <h3>{{ message }}</h3>
+    </div>
+  </form>
 </div>

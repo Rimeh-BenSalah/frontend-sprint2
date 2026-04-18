@@ -35,10 +35,15 @@
 
              <div class="col-sm-4 col-md-4 col-lg-4">
                  <label >Date de publication</label>
-                <input  type="date"  [ngModel]="currentLivre.Datedepublication | date: 'yyyy-MM-dd'" 
-                (ngModelChange)=" currentLivre.Datedepublication= $event"   name="Datedepublication" 
+                <input  type="date"  [ngModel]="currentLivre.datedepublication | date: 'yyyy-MM-dd'" 
+                (ngModelChange)=" currentLivre.datedepublication= $event"   name="Datedepublication" 
                 class="form-control">
              </div>
+             <select class="form-control form-control-lg" id="idThe" name="idThe" [(ngModel)]="updatedTheId">
+                 @for(the of themes; track the.idThe) {
+                     <option [value]="the.idThe"> {{the.nomThe}} 
+                     </option> } 
+            </select>
              
               <div class="mt-2">
                     <button type="submit"  (click)="updateLivre()" class="btn btn-success">Modifer</button>

@@ -1,12 +1,25 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Auth } from './services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink,RouterOutlet],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('MesLivres');
+  constructor(
+    public authService: Auth,
+    private router: Router,
+  ) {}
+  ngOnInit() {
+    this.authService.loadToken();
+    if (this.authService.getToken() == null || this.authService.isTokenExpired())
+      this.router.navigate(['/login']);
+  }
+  onLogout() {
+    this.authService.logout();
+  }
 }

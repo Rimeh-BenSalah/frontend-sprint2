@@ -17,39 +17,52 @@
         </tbody>
         }
       </table>-->
-        <table class="table table-striped">
-        @if(livres.length!=0)
-        {
-        <tr>
+      <table class="table table-striped">
+        @if (livres!.length != 0) {
+          <tr>
             <th>N°</th>
             <th>Id</th>
             <th>Nom</th>
             <th>auteur</th>
             <th>Prix</th>
             <th>Datedepublication</th>
-        </tr>
-    }
-        @for (livre of livres; track livre.idLivre; let index =$index; let nbr=$count;let first = $first;let last = $last) {
-           <!--@if(index==0) { 
+            <th>Théme</th>
+          </tr>
+        }
+        @for (
+          livre of livres;
+          track livre.idLivre;
+          let index = $index;
+          let nbr = $count;
+          let first = $first;
+          let last = $last
+        ) {
+          <!--@if(index==0) { 
                 <h1>Nombre : {{nbr}}</h1>}-->
-            <tbody>
-              <tr>
-                <td>{{index+1}}</td>
-                <td>{{livre.idLivre}}</td>
-                <td>{{livre.nomLivre}}</td>
-                <td>{{livre.auteur}}</td>
-                <td>{{livre.prixLivre}}</td>
-                <td>{{livre.Datedepublication | date:'dd/MM/yyyy'}}</td>
-                <td><a class="btn btn-danger" (click)="supprimerLivre(livre)">Supprimer</a></td>
-                <td><a class="btn btn-success" [routerLink]="['/updateLivre',livre.idLivre]">Modifier</a></td>
-  
-              </tr>
-            </tbody>
-            @if(last) { 
-              <h1>Nombre : {{nbr}}</h1>}
+          <tbody>
+            <tr>
+              <td>{{ index + 1 }}</td>
+              <td>{{ livre.idLivre }}</td>
+              <td>{{ livre.nomLivre }}</td>
+              <td>{{ livre.auteur }}</td>
+              <td>{{ livre.prixLivre }}</td>
+              <td>{{ livre.datedepublication | date:'dd/MM/yyyy' }}</td>
+              <td>{{ livre.theme.nomThe }}</td>
+              @if(authService.isAdmin()) {
+              <td><a class="btn btn-danger" (click)="supprimerLivre(livre)">Supprimer</a></td>
+              <td>
+                <a class="btn btn-success" [routerLink]="['/updateLivre', livre.idLivre]"
+                  >Modifier</a
+                >
+              </td>}
+            </tr>
+          </tbody>
+          @if (last) {
+            <h1>Nombre : {{ nbr }}</h1>
           }
-        @empty {
-            <h1>Aucun livre trouvé !</h1> }
+        } @empty {
+          <h1>Aucun livre trouvé !</h1>
+        }
       </table>
     </div>
   </div>
