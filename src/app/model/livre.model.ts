@@ -1,3 +1,4 @@
+import { Image } from "./Image.model";
 import { Theme } from "./theme.model";
 
 export class Livre { 
@@ -7,4 +8,7 @@ auteur?: string;
 prixLivre? : number; 
 datedepublication?: Date;
 theme! : Theme;
+image! : Image;
+imageStr!:string;
+images!: Image[];
 } 

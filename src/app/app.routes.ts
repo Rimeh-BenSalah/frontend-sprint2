@@ -9,6 +9,8 @@ import { UpdateTheme } from './update-theme/update-theme';
 import { Login } from './login/login';
 import { Forbidden } from './forbidden/forbidden';
 import { livreGuard } from './livre-guard';
+import { Register } from './register/register';
+import { VerifEmail } from './verif-email/verif-email';
 
 export const routes: Routes = [
     {path: "livres", component : Livres},
@@ -21,4 +23,6 @@ export const routes: Routes = [
     {path: "updateTheme", component : UpdateTheme},
     {path: 'login', component: Login},
     {path: 'app-forbidden', component: Forbidden},
+    {path:'register',component:Register},
+    { path: 'verifEmail', component: VerifEmail },
 ];

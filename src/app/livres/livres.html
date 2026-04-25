@@ -27,6 +27,7 @@
             <th>Prix</th>
             <th>Datedepublication</th>
             <th>Théme</th>
+            <th>Image</th>
           </tr>
         }
         @for (
@@ -48,6 +49,7 @@
               <td>{{ livre.prixLivre }}</td>
               <td>{{ livre.datedepublication | date:'dd/MM/yyyy' }}</td>
               <td>{{ livre.theme.nomThe }}</td>
+              <td><img class="card-img-top img-responsive" src = "{{livre.imageStr}}" style = "height :50px;width:100px"> </td>
               @if(authService.isAdmin()) {
               <td><a class="btn btn-danger" (click)="supprimerLivre(livre)">Supprimer</a></td>
               <td>

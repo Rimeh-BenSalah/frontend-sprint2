@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Livre } from '../model/livre.model';
 import { LivreService } from '../services/livre-service';
 import { Auth } from '../services/auth';
+import { Image } from '../model/Image.model';
 
 @Component({
   selector: 'app-livres',
@@ -13,6 +14,7 @@ import { Auth } from '../services/auth';
 })
 export class Livres implements OnInit {
   livres: Livre[] = [];
+  apiurl:string='http://localhost:8081/livres/api';
 
   constructor(private livreService: LivreService,public authService: Auth) {
     /*this.livres = [
@@ -27,12 +29,23 @@ export class Livres implements OnInit {
       this.livres = livs; });
       this.chargerLivres();
   }
- chargerLivres(){ 
+ /*chargerLivres(){ 
   this.livreService.listeLivre().subscribe(livs => { 
     console.log(livs); 
     this.livres = livs; 
+    this.livres.forEach((liv) => { 
+      this.livreService .loadImage(liv.image.idImage) 
+      .subscribe((img: Image) => { 
+        liv.imageStr = 'data:' + img.type + ';base64,' + img.image; 
+      });
+      });
   }); 
-}
+}*/
+chargerLivres(){ 
+  this.livreService.listeLivre()
+  .subscribe(livs => { this.livres = livs; 
+    this.livres.forEach((liv) => { 
+      liv.imageStr = 'data:' + liv.images[0].type + ';base64,' + liv.images[0].image; }); }); }
 
 supprimerLivre(l: Livre) { 
   let conf = confirm("Etes-vous sûr ?"); 

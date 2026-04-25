@@ -18,6 +18,7 @@ export class Auth {
   public loggedUser!: string;
   public isloggedIn: boolean = false;
   public roles!: string[];
+  public regitredUser : User = new User(); 
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -97,4 +98,19 @@ export class Auth {
   isTokenExpired(): Boolean {
     return this.helper.isTokenExpired(this.token);
   }
+
+  registerUser(user :User){ 
+    return this.http.post<User>(this.apiURL+'/register', user, {observe:'response'}); 
+  }
+ 
+ setRegistredUser(user : User){ 
+  this.regitredUser=user; 
+  } 
+  getRegistredUser(){ 
+    return this.regitredUser; 
+  }
+  validateEmail(code : string){ 
+    return this.http.get<User>(this.apiURL+'/verifyEmail/'+code); 
+  }
+
 }
